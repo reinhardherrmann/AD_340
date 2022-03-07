@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AD 340</string>
+    <string name="err_msg_zip_code">Bitte gültige PLZ eingeben</string>
 </resources>
