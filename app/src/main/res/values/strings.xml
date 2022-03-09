@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AD 340</string>
     <string name="err_msg_zip_code">Bitte gültige PLZ eingeben</string>
+    <string name="lbl_btn_submit_zip_code">Absenden</string>
+    <string name="hint_et_plz">Postleitzahl</string>
+    <string name="instruction_to_get_forecast">Bitte geben Sie Ihre Postleitzahl an</string>
+    <string name="toast_forecast_item_selected">Forecast: %1$.2f %2$s</string>
 </resources>

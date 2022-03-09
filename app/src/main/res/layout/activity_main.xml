@@ -24,7 +24,7 @@
         android:layout_marginBottom="8dp"
         android:textAlignment="center"
         android:textSize="@dimen/title_text_height"
-        android:text="Bitte geben Sie Ihre Postleitzahl an"
+        android:text="@string/instruction_to_get_forecast"
         app:layout_constraintBottom_toTopOf="@+id/et_PLZ"
         app:layout_constraintEnd_toEndOf="@+id/et_PLZ"
         app:layout_constraintStart_toStartOf="@+id/et_PLZ" />
@@ -36,7 +36,7 @@
         android:layout_marginTop="200dp"
         android:ems="10"
         android:inputType="number"
-        android:hint="Postleitzahl"
+        android:hint="@string/hint_et_plz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,8 +46,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Button"
+        android:text="@string/lbl_btn_submit_zip_code"
         app:layout_constraintEnd_toEndOf="@+id/et_PLZ"
         app:layout_constraintStart_toStartOf="@+id/et_PLZ"
         app:layout_constraintTop_toBottomOf="@+id/et_PLZ" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_forecast_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/color_background_rv_forecast_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_submit_zip_code" />
 </androidx.constraintlayout.widget.ConstraintLayout>

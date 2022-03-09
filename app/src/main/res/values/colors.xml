@@ -7,4 +7,6 @@
     <color name="teal_700">#FBC02D</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_background_rv_forecast_list">#DDDDDD</color>
+    <color name="color_item_forecast">#FFF1F1</color>
 </resources>

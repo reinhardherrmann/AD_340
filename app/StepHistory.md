@@ -40,7 +40,12 @@
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
-step 3  Titel
+step 3  Recycler View erstellen
+        Dataclass DailyForecast erstellt
+        Repository (ermittelt vorerst Zufallsdaten) erstellt
+        MainActivity mit Observer und RecyclerView
+        Adapter für RecyclerView erstellt
+        ForecastAdapter mit ClickHandler
 ---------------------------------------------------------------------------------------------------
 step 2  create first app
         first Activity designed and tested, theme changed clickListener implemented
