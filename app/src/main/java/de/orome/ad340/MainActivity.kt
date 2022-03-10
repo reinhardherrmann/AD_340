@@ -1,5 +1,6 @@
 package de.orome.ad340
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import de.orome.ad340.details.ForecastDetailsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,9 +26,10 @@ class MainActivity : AppCompatActivity() {
         val btnEnter: Button = findViewById(R.id.btn_submit_zip_code)
         val rvForecastList: RecyclerView = findViewById(R.id.rv_forecast_list)
         rvForecastList.layoutManager = LinearLayoutManager(this)
+        
         val adapter: DailyForecastAdapter = DailyForecastAdapter(){forecast ->
             val message = getString(R.string.toast_forecast_item_selected,forecast.temperature, forecast.description)
-            Toast.makeText(this, message,Toast.LENGTH_SHORT).show()
+            showForecastDetails(forecast)
         }
         rvForecastList.adapter = adapter
 
@@ -53,7 +56,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+private fun showForecastDetails(forecast: DailyForecast){
 
+    val intentForecastDetails = Intent(this,ForecastDetailsActivity::class.java)
+    intentForecastDetails.putExtra("key_temperature", forecast.temperature)
+    intentForecastDetails.putExtra("key_description", forecast.description)
+    startActivity(intentForecastDetails)
+}
 
 
 

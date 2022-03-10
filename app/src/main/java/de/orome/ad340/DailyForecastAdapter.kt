@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 class DailyForecastViewHolder(view: View): RecyclerView.ViewHolder(view){
     private val tempText = view.findViewById<TextView>(R.id.tv_item_temperature)
     private val descriptionText: TextView = view.findViewById(R.id.tv_item_description)
+    private val util = ForecastUtils()
     // views mit Werten füllen
     fun bind(dailyForecast: DailyForecast){
-        tempText.text = String.format("%.2f",dailyForecast.temperature)
+        tempText.text = util.formatTempForDisplay(dailyForecast.temperature)
         descriptionText.text = dailyForecast.description.toString()
     }
 }
