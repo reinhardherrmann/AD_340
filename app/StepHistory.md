@@ -46,6 +46,7 @@ step 3  Recycler View erstellen
         MainActivity mit Observer und RecyclerView
         Adapter für RecyclerView erstellt
         ForecastAdapter mit ClickHandler
+        Forecast description customized
 ---------------------------------------------------------------------------------------------------
 step 2  create first app
         first Activity designed and tested, theme changed clickListener implemented
