@@ -11,12 +11,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import de.orome.ad340.ForecastUtils
 import de.orome.ad340.R
+import de.orome.ad340.TempDisplaySetting
+import de.orome.ad340.TempDisplaySettingManager
 
 class ForecastDetailsActivity : AppCompatActivity() {
+
+    private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
+    private val util = ForecastUtils()
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        val util = ForecastUtils()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forecast_details)
+
+        tempDisplaySettingManager = TempDisplaySettingManager(this)
 
         setTitle(R.string.lbl_activity_forecast_details)
 
@@ -25,7 +33,7 @@ class ForecastDetailsActivity : AppCompatActivity() {
 
         // get the extras of the intent and display in TextViews
         val temp = intent.getFloatExtra("key_temperature", 0f)
-        tvTemperature.text = util.formatTempForDisplay(temp)
+        tvTemperature.text = util.formatTempForDisplay(temp, tempDisplaySettingManager.getTempDisplaySetting())
         tvDescription.text = "${intent.getStringExtra("key_description")}"
 
     }
@@ -41,7 +49,7 @@ class ForecastDetailsActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.mnu_settings_select_temp_unit -> {
                 // TODO show Dialog to select the temp unit
-                showTempDisplaySettingDialog()
+                util.showTempDisplaySettingDialog(this,tempDisplaySettingManager)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -49,23 +57,27 @@ class ForecastDetailsActivity : AppCompatActivity() {
 
     }
 
-    private fun showTempDisplaySettingDialog() {
-        val dialogBuilder = AlertDialog.Builder(this)
-            .setTitle("Select Unit")
-            .setMessage("choose which temperature unit will be displayed.")
-            .setPositiveButton("°F") { _, _ ->
-                Toast.makeText(this@ForecastDetailsActivity, "°F selected", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            .setNeutralButton("°C") { _, _ ->
-                Toast.makeText(this@ForecastDetailsActivity, "°C selected", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            .setOnDismissListener {
-                Toast.makeText(this@ForecastDetailsActivity, "Setting will take affect on app restart", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        dialogBuilder.show()
-    }
+//    private fun showTempDisplaySettingDialog() {
+//        val dialogBuilder = AlertDialog.Builder(this)
+//            .setTitle("Select Unit")
+//            .setMessage("choose which temperature unit will be displayed.")
+//            .setPositiveButton("°F") { _, _ ->
+////                Toast.makeText(this@ForecastDetailsActivity, "°F selected", Toast.LENGTH_SHORT)
+////                    .show()
+//                tempDisplaySettingManager.updateSettings(TempDisplaySetting.Fahrenheit)
+//            }
+//            .setNeutralButton("°C") { _, _ ->
+////                Toast.makeText(this@ForecastDetailsActivity, "°C selected", Toast.LENGTH_SHORT)
+////                    .show()
+//                tempDisplaySettingManager.updateSettings(TempDisplaySetting.Celsius)
+//            }
+//                // wird immer angezeigt
+//            .setOnDismissListener {
+//                Toast.makeText(this@ForecastDetailsActivity, "Setting will take affect on app restart", Toast.LENGTH_SHORT)
+//                    .show()
+//                //tempDisplaySettingManager.updateSettings(TempDisplaySetting.Celsius)
+//            }
+//        dialogBuilder.show()
+//    }
 
 }

@@ -44,7 +44,8 @@ step 4  Intents, Menus, Dialogs Shared preferences
         Intent zum Aufruf der Activity erstellt und Werte mit Extras an Form übertragen
         Settings Menü erstellt und Dialog zum Einstellen von °C und °Fahrenheit
         eingerichtet.
-        Es fehlt Funktion zum Erstellen der Shared Preferences und zum Umrechnen der Temperaturen
+        Shared Preferences erstellt und Dialog zum Ändern der Werte
+        Shared Prefs werden bei der Anzeige berücksichtigt
 ---------------------------------------------------------------------------------------------------
 step 3  Recycler View erstellen
         Dataclass DailyForecast erstellt
