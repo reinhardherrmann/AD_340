@@ -11,12 +11,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.orome.ad340.details.ForecastDetailsActivity
+import de.orome.ad340.forecast.CurrentForecastFragment
+import de.orome.ad340.location.LocationEntryFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AppNavigator {
 
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
     // Repository festlegen
@@ -31,15 +34,6 @@ class MainActivity : AppCompatActivity() {
         
         var et_ZipCode: EditText = findViewById(R.id.et_PLZ)
         val btnEnter: Button = findViewById(R.id.btn_submit_zip_code)
-        val rvForecastList: RecyclerView = findViewById(R.id.rv_forecast_list)
-        rvForecastList.layoutManager = LinearLayoutManager(this)
-        
-        val listAdapter: DailyForecastListAdapter = DailyForecastListAdapter(tempDisplaySettingManager){ forecast ->
-            val message = getString(R.string.toast_forecast_item_selected,forecast.temperature, forecast.description)
-            showForecastDetails(forecast)
-        }
-        rvForecastList.adapter = listAdapter
-
 
         var zipCode:String = ""
 
@@ -49,32 +43,55 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.err_msg_zip_code), Toast.LENGTH_SHORT).show()
             } else{
                 repository.loadForecast(zipCode)
-            //Toast.makeText(this,"PLZ: ${et_ZipCode.text.toString()}",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this.requireContext(),"PLZ: ${et_ZipCode.text.toString()}",Toast.LENGTH_SHORT).show()
             }
         }
+
+        val rvForecastList: RecyclerView = findViewById(R.id.rv_forecast_list)
+        rvForecastList.layoutManager = LinearLayoutManager(this)
+
+        val listAdapter: DailyForecastListAdapter = DailyForecastListAdapter(tempDisplaySettingManager){ forecast ->
+            val message = getString(R.string.toast_forecast_item_selected,forecast.temperature, forecast.description)
+            showForecastDetails(forecast)
+        }
+        rvForecastList.adapter = listAdapter
+
         // Observer des DailyForecast einrichten
-        val weeklyForecastObserver = Observer<List<DailyForecast>>{forecastItems ->
+        val weeklyForecastObserver = Observer<List<DailyForecast>>{ forecastItems ->
             // update the ListAdapter when defined
             listAdapter.submitList(forecastItems)
             //Toast.makeText(this, forecastItems.toString(), Toast.LENGTH_LONG).show()
             Log.w("MyTag", forecastItems.toString() )
         }
-        repository.weeklyForacast.observe(this, weeklyForecastObserver)
+        repository.weeklyForecast.observe(this, weeklyForecastObserver)
+
+
+
+
+
+
 
     }
 
-private fun showForecastDetails(forecast: DailyForecast){
+    private fun showForecastDetails(forecast: DailyForecast){
 
-    val intentForecastDetails = Intent(this,ForecastDetailsActivity::class.java)
-    intentForecastDetails.putExtra("key_temperature", forecast.temperature)
-    intentForecastDetails.putExtra("key_description", forecast.description)
-    startActivity(intentForecastDetails)
-}
+        val intentForecastDetails = Intent(this, ForecastDetailsActivity::class.java)
+        intentForecastDetails.putExtra("key_temperature", forecast.temperature)
+        intentForecastDetails.putExtra("key_description", forecast.description)
+        startActivity(intentForecastDetails)
+    }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.mnu_settings, menu)
         return true
+    }
+
+    override fun navigateToCurrentForecast(zipCode: String) {
+        //repository.loadForecast(zipCode)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

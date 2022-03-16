@@ -7,7 +7,7 @@ import kotlin.random.Random
 class ForecastRepository {
 
     private val _weeklyForecast = MutableLiveData<List<DailyForecast>>()
-    val weeklyForacast: LiveData<List<DailyForecast>> = _weeklyForecast
+    val weeklyForecast: LiveData<List<DailyForecast>> = _weeklyForecast
 
     fun loadForecast(zipCode: String){
         // Zufallsliste mit 7 zufällig erzeugten Werten zwischen 0 und 100 erstellen
