@@ -14,9 +14,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.orome.ad340.details.ForecastDetailsActivity
+import de.orome.ad340.interfaces.AppNavigator
 import de.orome.ad340.location.LocationEntryFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AppNavigator {
 
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
     // Repository festlegen
@@ -79,8 +80,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // return super.onOptionsItemSelected(item)
         return when (item.itemId) {
@@ -94,7 +93,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+    override fun navigateToCurrentForecast(zipCode: String) {
+        repository.loadForecast(zipCode)
+    }
 
 
 }

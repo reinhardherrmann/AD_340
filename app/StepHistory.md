@@ -35,6 +35,12 @@
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
+step 5.3    Anzeige der Daten in der RecyclerView
+            Interface AppNavigator erstellt und in MainActivity implementiert ->
+            ForecastDaten werden bei Aufruf aktualisiert
+            In LocationEntryFragment wird Appnavigator aus Mainactivity gecastet.
+            -> repository steht zur Verfügung bereit
+            Anzeige der Listendaten über den Aufruf des AppNavigators und Übergabe der PLZ
 ---------------------------------------------------------------------------------------------------
 step 5.2    add Fragment programmatically to Activity
             container zum Anzeigen der FRagments erstellt
