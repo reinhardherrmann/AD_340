@@ -37,9 +37,15 @@
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
 step 6  Fragments with navigation component
-        beide build.gradle files angepaßt
+        beide build.gradle files angepasst
+---------------------------------------------------------------------------------------------------
+step 5  Fragments
+        create LocationEntryFragment
+        TODO create CurrentForecastFragment
+        TODO create AppNavigation Interface
+        TODO add FloatingActionButton to show LocationEntryFragment
+
 ---------------------------------------------------------------------------------------------------
 step 4  Intents, Menus, Dialogs Shared preferences
         ForecastDetailsActivity erstellt

@@ -10,16 +10,12 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.orome.ad340.details.ForecastDetailsActivity
-import de.orome.ad340.forecast.CurrentForecastFragment
-import de.orome.ad340.location.LocationEntryFragment
 
-class MainActivity : AppCompatActivity(), AppNavigator {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
     // Repository festlegen
@@ -89,10 +85,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
         return true
     }
 
-    override fun navigateToCurrentForecast(zipCode: String) {
-        //repository.loadForecast(zipCode)
 
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // return super.onOptionsItemSelected(item)
