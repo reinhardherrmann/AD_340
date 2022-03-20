@@ -8,17 +8,6 @@
     tools:context=".MainActivity">
 
 
-    <fragment
-        android:id="@+id/locationEntryFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.3"
-        android:name="de.orome.ad340.location.LocationEntryFragment"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout="@layout/fragment_location_entry"/>
-
     <ImageView
         android:layout_width="@dimen/iv_zip_code_dimens"
         android:layout_height="@dimen/iv_zip_code_dimens"
@@ -41,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationEntryFragment"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15" />
 
     <EditText
