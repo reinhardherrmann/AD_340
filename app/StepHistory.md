@@ -36,17 +36,25 @@
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
+step 5.2    add Fragment programmatically to Activity
+            container zum Anzeigen der FRagments erstellt
+            Layout für LocationEntryFragment erstellt
+            Fragment in MainActivity angezeigt
+            Funktionalität für Button eingerichtet
 ---------------------------------------------------------------------------------------------------
-step 5.1    Fragments show Fragments in MainActivity
-
-
+step 5.1  Fragments
+        display LocationEntryFragment
+        in MainActivity as part
+        TODO create CurrentForecastFragment
+        TODO create AppNavigation Interface
+        TODO add FloatingActionButton to
+        show LocationEntryFragment
 ---------------------------------------------------------------------------------------------------
 step 5  Fragments
         create LocationEntryFragment
         TODO create CurrentForecastFragment
         TODO create AppNavigation Interface
         TODO add FloatingActionButton to show LocationEntryFragment
-
 ---------------------------------------------------------------------------------------------------
 step 4  Intents, Menus, Dialogs Shared preferences
         ForecastDetailsActivity erstellt

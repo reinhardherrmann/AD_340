@@ -6,20 +6,62 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/teal_200"
         tools:context=".location.LocationEntryFragment">
 
+    <ImageView
+        android:layout_width="@dimen/iv_zip_code_dimens"
+        android:layout_height="@dimen/iv_zip_code_dimens"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_location"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/et_PLZ"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/et_PLZ" />
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/instruction_to_get_forecast"
+            android:textAlignment="center"
+            android:textSize="@dimen/title_text_height"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25" />
+
+    <EditText
+        android:id="@+id/et_PLZ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/hint_et_plz"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_submit_zip_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/lbl_btn_submit_zip_code"
+        app:layout_constraintEnd_toEndOf="@+id/et_PLZ"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/et_PLZ"
+        app:layout_constraintTop_toBottomOf="@+id/et_PLZ" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 </layout>

@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.orome.ad340.details.ForecastDetailsActivity
+import de.orome.ad340.location.LocationEntryFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,20 +29,10 @@ class MainActivity : AppCompatActivity() {
 
         tempDisplaySettingManager = TempDisplaySettingManager(this)
         
-        var et_ZipCode: EditText = findViewById(R.id.et_PLZ)
-        val btnEnter: Button = findViewById(R.id.btn_submit_zip_code)
+//        var et_ZipCode: EditText = findViewById(R.id.et_PLZ)
+//        val btnEnter: Button = findViewById(R.id.btn_submit_zip_code)
 
-        var zipCode:String = ""
 
-        btnEnter.setOnClickListener{
-            zipCode = et_ZipCode.text.toString()
-            if (zipCode.length < 5){
-                Toast.makeText(this, getString(R.string.err_msg_zip_code), Toast.LENGTH_SHORT).show()
-            } else{
-                repository.loadForecast(zipCode)
-                //Toast.makeText(this.requireContext(),"PLZ: ${et_ZipCode.text.toString()}",Toast.LENGTH_SHORT).show()
-            }
-        }
 
         val rvForecastList: RecyclerView = findViewById(R.id.rv_forecast_list)
         rvForecastList.layoutManager = LinearLayoutManager(this)
@@ -62,7 +53,10 @@ class MainActivity : AppCompatActivity() {
         repository.weeklyForecast.observe(this, weeklyForecastObserver)
 
 
-
+    supportFragmentManager
+        .beginTransaction()
+        .add(R.id.fragment_container    ,LocationEntryFragment())
+        .commit()
 
 
 
