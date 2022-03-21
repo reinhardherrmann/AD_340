@@ -34,6 +34,10 @@
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
+step 5.4    FragmentCurrentForecast erstellen
+            FAB zur Eingabe der Postleitzahl einführen
+            FragmentContainer auf gesamten ViewContainer ausweiten
+            Fragments werden sauber annavigiert
 ---------------------------------------------------------------------------------------------------
 step 5.3    Anzeige der Daten in der RecyclerView
             Interface AppNavigator erstellt und in MainActivity implementiert ->
@@ -51,10 +55,9 @@ step 5.2    add Fragment programmatically to Activity
 step 5.1  Fragments
         display LocationEntryFragment
         in MainActivity as part
-        TODO create CurrentForecastFragment
-        TODO create AppNavigation Interface
-        TODO add FloatingActionButton to
-        show LocationEntryFragment
+        create CurrentForecastFragment
+        create AppNavigation Interface
+        add FloatingActionButton to show LocationEntryFragment
 ---------------------------------------------------------------------------------------------------
 step 5  Fragments
         create LocationEntryFragment
