@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AD 340</string>
+    <string name="app_name">AD 340 Weather</string>
     <string name="err_msg_zip_code">Bitte gültige PLZ eingeben</string>
     <string name="lbl_btn_submit_zip_code">Absenden</string>
     <string name="hint_et_plz">Postleitzahl</string>

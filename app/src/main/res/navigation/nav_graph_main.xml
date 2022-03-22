@@ -9,7 +9,7 @@
         android:id="@+id/locationEntryFragment"
         android:name="de.orome.ad340.location.LocationEntryFragment"
         tools:layout="@layout/fragment_location_entry"
-        android:label="LocationEntryFragment" >
+        android:label="@string/app_name" >
         <action
             android:id="@+id/action_locationEntryFragment_to_currentForecastFragment"
             app:destination="@id/currentForecastFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/currentForecastFragment"
         android:name="de.orome.ad340.forecast.CurrentForecastFragment"
         tools:layout="@layout/fragment_current_forecast"
-        android:label="CurrentForecastFragment" >
+        android:label="@string/app_name" >
         <action
             android:id="@+id/action_currentForecastFragment_to_locationEntryFragment"
             app:destination="@id/locationEntryFragment" />
@@ -30,7 +30,7 @@
         android:id="@+id/forecastDetailsFragment"
         android:name="de.orome.ad340.details.ForecastDetailsFragment"
         tools:layout="@layout/fragment_forecast_details"
-        android:label="ForecastDetailsFragment" >
+        android:label="@string/app_name" >
         <argument
             android:name="temp"
             app:argType="float" />
