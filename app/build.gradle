@@ -24,10 +24,12 @@ android {
         }
     }
     compileOptions {
+        // for safeargs working correctly
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
+        // for safeargs working correctly
         jvmTarget = '1.8'
     }
     dataBinding{

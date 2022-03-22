@@ -30,10 +30,6 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
         tempDisplaySettingManager = TempDisplaySettingManager(this)
 
-    supportFragmentManager
-        .beginTransaction()
-        .add(R.id.fragment_container    ,LocationEntryFragment())
-        .commit()
 
     }
 
@@ -58,15 +54,15 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
     override fun navigateToCurrentForecast(zipCode: String) {
         // replace LocationEntryFragment durch CurrentForecastFragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container,CurrentForecastFragment.newInstance(zipCode))
-            .commit()
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container,CurrentForecastFragment.newInstance(zipCode))
+//            .commit()
     }
 
     override fun navigateToLocationEntry() {
         // replace CurrentForacastFragment through LocationEntryFragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container,LocationEntryFragment())
-            .commit()
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container,LocationEntryFragment())
+//            .commit()
     }
 }
