@@ -31,7 +31,10 @@
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
-
+step 6.2    convert activity_daily_forecast into fragment
+            add fragment_daily_forecast to NavigationGraph
+            implement navigation and safeargs to view and NavGraph
+            update AppNavigator and MainActivity to navigate to DailyForecast
 ---------------------------------------------------------------------------------------------------
 step 6.1    build NavigationGraph
             edit MainActivity and activity_main.xml

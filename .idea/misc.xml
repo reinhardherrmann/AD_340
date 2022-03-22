@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Tutorials/AD340/app/src/main/res/layout/activity_forecast_details.xml" value="0.17222222222222222" />
         <entry key="..\:/Tutorials/AD340/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Tutorials/AD340/app/src/main/res/layout/fragment_current_forecast.xml" value="0.2611111111111111" />
         <entry key="..\:/Tutorials/AD340/app/src/main/res/layout/fragment_current_forecast_4.xml" value="0.325" />

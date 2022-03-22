@@ -22,5 +22,20 @@
         <action
             android:id="@+id/action_currentForecastFragment_to_locationEntryFragment"
             app:destination="@id/locationEntryFragment" />
+        <action
+            android:id="@+id/action_currentForecastFragment_to_forecastDetailsFragment"
+            app:destination="@id/forecastDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forecastDetailsFragment"
+        android:name="de.orome.ad340.details.ForecastDetailsFragment"
+        tools:layout="@layout/fragment_forecast_details"
+        android:label="ForecastDetailsFragment" >
+        <argument
+            android:name="temp"
+            app:argType="float" />
+        <argument
+            android:name="description"
+            app:argType="string" />
     </fragment>
 </navigation>

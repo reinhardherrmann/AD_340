@@ -10,10 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import de.orome.ad340.*
 import de.orome.ad340.databinding.FragmentCurrentForecastBinding
-import de.orome.ad340.details.ForecastDetailsActivity
+import de.orome.ad340.details.ForecastDetailsFragment
 import de.orome.ad340.interfaces.AppNavigator
 
 
@@ -82,11 +81,15 @@ class CurrentForecastFragment : Fragment() {
     }
 
     private fun showForecastDetails(forecast: DailyForecast) {
+        /**
+         * navigate to the ForecastDetailsScreen
+         */
+        appNavigator.navigateToForecastDetails(forecast)
 
-        val intentForecastDetails = Intent(requireContext(), ForecastDetailsActivity::class.java)
-        intentForecastDetails.putExtra("key_temperature", forecast.temperature)
-        intentForecastDetails.putExtra("key_description", forecast.description)
-        startActivity(intentForecastDetails)
+//        val intentForecastDetails = Intent(requireContext(), ForecastDetailsFragment::class.java)
+//        intentForecastDetails.putExtra("key_temperature", forecast.temperature)
+//        intentForecastDetails.putExtra("key_description", forecast.description)
+//        startActivity(intentForecastDetails)
     }
 
     /**
