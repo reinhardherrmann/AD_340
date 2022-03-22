@@ -37,6 +37,7 @@ step 6.1    build NavigationGraph
             edit MainActivity and activity_main.xml
             dependencies checked
             NavigationGraph added and integrated in activity_main.xml
+            actions to navigate to fragments implemented and tested
 ---------------------------------------------------------------------------------------------------
 step 6      Navigation
 ---------------------------------------------------------------------------------------------------
