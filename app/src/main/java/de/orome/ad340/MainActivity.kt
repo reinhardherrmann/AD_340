@@ -11,7 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import de.orome.ad340.forecast.CurrentForecastFragmentDirections
 import de.orome.ad340.interfaces.AppNavigator
-import de.orome.ad340.location.LocationEntryFragmentDirections
+
 
 class MainActivity : AppCompatActivity(), AppNavigator {
 
@@ -52,9 +52,9 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
     override fun navigateToCurrentForecast(zipCode: String) {
         // replace LocationEntryFragment durch CurrentForecastFragment
-        val action = LocationEntryFragmentDirections
-            .actionLocationEntryFragmentToCurrentForecastFragment()
-        findNavController(R.id.nav_host_fragment).navigate(action)
+//        val action = LocationEntryFragmentDirections
+//            .actionLocationEntryFragmentToCurrentForecastFragment()
+//        findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
     override fun navigateToLocationEntry() {
