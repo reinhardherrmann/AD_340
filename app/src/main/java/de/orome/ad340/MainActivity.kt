@@ -9,11 +9,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import de.orome.ad340.forecast.CurrentForecastFragmentDirections
-import de.orome.ad340.interfaces.AppNavigator
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class MainActivity : AppCompatActivity(), AppNavigator {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
@@ -27,7 +26,8 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
+        findViewById<Toolbar>(R.id.toolbar).setTitle(R.string.app_name) //.setupWithNavController(navController, appBarConfiguration)
+        findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
 
     }
 
@@ -50,24 +50,5 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
     }
 
-    override fun navigateToCurrentForecast(zipCode: String) {
-        // replace LocationEntryFragment durch CurrentForecastFragment
-//        val action = LocationEntryFragmentDirections
-//            .actionLocationEntryFragmentToCurrentForecastFragment()
-//        findNavController(R.id.nav_host_fragment).navigate(action)
-    }
 
-    override fun navigateToLocationEntry() {
-        // replace CurrentForacastFragment through LocationEntryFragment
-        val action = CurrentForecastFragmentDirections
-            .actionCurrentForecastFragmentToLocationEntryFragment()
-        findNavController(R.id.nav_host_fragment).navigate(action)
-    }
-
-    override fun navigateToForecastDetails(forecast: DailyForecast) {
-        val action = CurrentForecastFragmentDirections
-            .actionCurrentForecastFragmentToForecastDetailsFragment(forecast.temperature,
-                forecast.description)
-        findNavController(R.id.nav_host_fragment).navigate(action)
-    }
 }

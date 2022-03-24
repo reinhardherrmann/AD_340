@@ -1,7 +1,5 @@
 package de.orome.ad340.forecast
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.orome.ad340.*
 import de.orome.ad340.databinding.FragmentCurrentForecastBinding
-import de.orome.ad340.details.ForecastDetailsFragment
-import de.orome.ad340.interfaces.AppNavigator
 
 
 class CurrentForecastFragment : Fragment() {
@@ -22,16 +19,8 @@ class CurrentForecastFragment : Fragment() {
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
     private val repository = ForecastRepository()
     private val util = ForecastUtils()
-    private lateinit var appNavigator: AppNavigator
+    var zipCode = ""
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        /**
-         * appNavigator initialisieren -> Funktionen aus Interface stehen im Fragment
-         * -> Methoden aus AppNavigator stehen zur Verfügung
-         */
-        appNavigator = context as AppNavigator
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +32,12 @@ class CurrentForecastFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
-        var zipCode = requireArguments().getString(KEY_ZIPCODE) ?: "12305"
+        try {
+            zipCode = requireArguments().getString(KEY_ZIPCODE)!!
+        } catch (e: Exception){
+            zipCode = "12345"
+        }
+
 
         // Inflate the layout for this fragment
         binding = FragmentCurrentForecastBinding.inflate(inflater, container, false)
@@ -64,7 +58,8 @@ class CurrentForecastFragment : Fragment() {
         binding.rvForecastList.adapter = listAdapter
 
         binding.fabOpenLocationEntryFragment.setOnClickListener {
-            appNavigator.navigateToLocationEntry()
+            val action = CurrentForecastFragmentDirections.actionCurrentForecastFragmentToLocationEntryFragment()
+            findNavController().navigate(action)
         }
 
         // Observer des DailyForecast einrichten
@@ -81,15 +76,8 @@ class CurrentForecastFragment : Fragment() {
     }
 
     private fun showForecastDetails(forecast: DailyForecast) {
-        /**
-         * navigate to the ForecastDetailsScreen
-         */
-        appNavigator.navigateToForecastDetails(forecast)
-
-//        val intentForecastDetails = Intent(requireContext(), ForecastDetailsFragment::class.java)
-//        intentForecastDetails.putExtra("key_temperature", forecast.temperature)
-//        intentForecastDetails.putExtra("key_description", forecast.description)
-//        startActivity(intentForecastDetails)
+        val action = CurrentForecastFragmentDirections.actionCurrentForecastFragmentToForecastDetailsFragment(forecast.temperature,forecast.description)
+        findNavController().navigate(action)
     }
 
     /**

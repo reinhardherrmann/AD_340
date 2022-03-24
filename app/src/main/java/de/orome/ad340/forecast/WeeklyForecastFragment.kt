@@ -1,7 +1,5 @@
 package de.orome.ad340.forecast
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.orome.ad340.*
-import de.orome.ad340.databinding.FragmentCurrentForecastBinding
 import de.orome.ad340.databinding.FragmentWeeklyForecastBinding
-import de.orome.ad340.details.ForecastDetailsFragment
-import de.orome.ad340.interfaces.AppNavigator
 
 
 class WeeklyForecastFragment : Fragment() {
@@ -23,16 +19,8 @@ class WeeklyForecastFragment : Fragment() {
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
     private val repository = ForecastRepository()
     private val util = ForecastUtils()
-    private lateinit var appNavigator: AppNavigator
+    private var zipCode = ""
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        /**
-         * appNavigator initialisieren -> Funktionen aus Interface stehen im Fragment
-         * -> Methoden aus AppNavigator stehen zur Verfügung
-         */
-        appNavigator = context as AppNavigator
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +32,19 @@ class WeeklyForecastFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
-        var zipCode = requireArguments().getString(KEY_ZIPCODE) ?: "12305"
+        try {
+            zipCode = requireArguments().getString(KEY_ZIPCODE)!!
+        } catch (e: Exception){
+            zipCode = "12305"
+        }
+
 
         // Inflate the layout for this fragment
         binding = FragmentWeeklyForecastBinding.inflate(inflater, container, false)
         val view: View = binding.root
 
 
-        binding.rvForecastList.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvWeeklyForecastList.layoutManager = LinearLayoutManager(requireContext())
 
         val listAdapter: DailyForecastListAdapter =
             DailyForecastListAdapter(tempDisplaySettingManager) { forecast ->
@@ -62,17 +55,17 @@ class WeeklyForecastFragment : Fragment() {
                 )
                 showForecastDetails(forecast)
             }
-        binding.rvForecastList.adapter = listAdapter
+        binding.rvWeeklyForecastList.adapter = listAdapter
 
-        binding.fabOpenLocationEntryFragment.setOnClickListener {
-            appNavigator.navigateToLocationEntry()
+        binding.fabWeeklyOpenLocationEntryFragment.setOnClickListener {
+            val action = WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToLocationEntryFragment()
+            findNavController().navigate(action)
         }
 
         // Observer des DailyForecast einrichten
         val weeklyForecastObserver = Observer<List<DailyForecast>> { forecastItems ->
             // update the ListAdapter when defined
             listAdapter.submitList(forecastItems)
-            //Toast.makeText(this, forecastItems.toString(), Toast.LENGTH_LONG).show()
             Log.w("MyTag", forecastItems.toString())
         }
         repository.weeklyForecast.observe(viewLifecycleOwner, weeklyForecastObserver)
@@ -85,12 +78,8 @@ class WeeklyForecastFragment : Fragment() {
         /**
          * navigate to the ForecastDetailsScreen
          */
-        appNavigator.navigateToForecastDetails(forecast)
-
-//        val intentForecastDetails = Intent(requireContext(), ForecastDetailsFragment::class.java)
-//        intentForecastDetails.putExtra("key_temperature", forecast.temperature)
-//        intentForecastDetails.putExtra("key_description", forecast.description)
-//        startActivity(intentForecastDetails)
+        val action = WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToForecastDetailsFragment(forecast.temperature, forecast.description)
+        findNavController().navigate(action)
     }
 
     /**
